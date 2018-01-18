@@ -1,5 +1,7 @@
 package com.leocaliban.funcionario.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,7 @@ public class FuncionarioService {
 		}
 		return funcionario;
 	}
-	
+		
 	public Funcionario salvar(Funcionario funcionario) {
 		funcionario.setId(null);
 		return repository.save(funcionario);
@@ -30,6 +32,11 @@ public class FuncionarioService {
 	public Funcionario editar(Funcionario funcionario) {
 		 	buscar(funcionario.getId());
 		 	return repository.save(funcionario);
+	}
+	
+	public void excluir(Long id) {
+		 	buscar(id);
+		 	repository.delete(id);
 	}
 	
 }

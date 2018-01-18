@@ -42,5 +42,11 @@ public class FuncionarioResource {
 		funcionario = service.editar(funcionario);
 	 	return ResponseEntity.noContent().build();
 	}
+	
+	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
+	 public ResponseEntity<Void> excluir(@PathVariable Long id) {
+	 	service.excluir(id);
+	 	return ResponseEntity.noContent().build();
+	 }
 		
 }
