@@ -3,6 +3,9 @@ package com.leocaliban.funcionario.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.leocaliban.funcionario.domain.Funcionario;
@@ -40,6 +43,11 @@ public class FuncionarioService {
 	public void excluir(Long id) {
 		 	buscar(id);
 		 	repository.delete(id);
+	}
+	
+	public Page<Funcionario> buscarPagina(Integer pagina, Integer linhasPorPagina, String ordenarPor, String direcao){
+		 	PageRequest pageRequest = new PageRequest(pagina, linhasPorPagina, Direction.valueOf(direcao), ordenarPor);
+		 	return repository.findAll(pageRequest);
 	}
 	
 }

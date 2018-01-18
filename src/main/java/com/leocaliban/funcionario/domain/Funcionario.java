@@ -27,14 +27,14 @@ public class Funcionario implements Serializable {
 	
 	private String cargo;
 
-	private boolean status;
+	private boolean ativo;
 	
 	public Funcionario() {
 		
 	}
 
 	public Funcionario(Long id, String nome, String cpf, Date dataNascimento, Double salario, String cargo,
-			boolean status) {
+			boolean ativo) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -42,7 +42,7 @@ public class Funcionario implements Serializable {
 		this.dataNascimento = dataNascimento;
 		this.salario = salario;
 		this.cargo = cargo;
-		this.status = status;
+		this.ativo = ativo;
 	}
 
 	public Long getId() {
@@ -93,12 +93,12 @@ public class Funcionario implements Serializable {
 		this.cargo = cargo;
 	}
 
-	public boolean isStatus() {
-		return status;
+	public boolean isAtivo() {
+		return ativo;
 	}
 
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setAtivo(boolean status) {
+		this.ativo = status;
 	}
 
 	@Override
