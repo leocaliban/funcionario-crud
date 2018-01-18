@@ -27,4 +27,9 @@ public class FuncionarioService {
 		return repository.save(funcionario);
 	}
 	
+	public Funcionario editar(Funcionario funcionario) {
+		 	buscar(funcionario.getId());
+		 	return repository.save(funcionario);
+	}
+	
 }

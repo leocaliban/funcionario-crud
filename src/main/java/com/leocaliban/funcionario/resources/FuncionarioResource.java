@@ -36,4 +36,11 @@ public class FuncionarioResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
+	 public ResponseEntity<Void> editar(@RequestBody Funcionario funcionario, @PathVariable Long id){
+		funcionario.setId(id);
+		funcionario = service.editar(funcionario);
+	 	return ResponseEntity.noContent().build();
+	}
+		
 }
