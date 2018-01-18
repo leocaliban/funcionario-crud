@@ -23,7 +23,10 @@ public class FuncionarioService {
 		}
 		return funcionario;
 	}
-		
+	
+	public List<Funcionario> listarTodos(){
+	 	return repository.findAll();
+	}	
 	public Funcionario salvar(Funcionario funcionario) {
 		funcionario.setId(null);
 		return repository.save(funcionario);

@@ -2,6 +2,7 @@ package com.leocaliban.funcionario.resources;
 
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,12 @@ public class FuncionarioResource {
 		Funcionario funcionario = service.buscar(id);
 		return ResponseEntity.ok().body(funcionario);
 	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	 public ResponseEntity<List<Funcionario>> listarTodos() {
+	 	List<Funcionario> categorias = service.listarTodos();
+	 	return ResponseEntity.ok().body(categorias);
+	 }
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> salvar(@RequestBody Funcionario funcionario){
