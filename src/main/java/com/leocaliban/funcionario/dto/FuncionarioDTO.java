@@ -3,6 +3,9 @@ package com.leocaliban.funcionario.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.leocaliban.funcionario.domain.Funcionario;
 
 public class FuncionarioDTO implements Serializable {
@@ -11,6 +14,8 @@ public class FuncionarioDTO implements Serializable {
 
 	private Long id;
 	
+	@NotEmpty(message="Nome do Funcionário é obrigatório.")
+	@Length(min=10, max=60, message="O nome deve conter entre 10 e 60 caracteres.")
 	private String nome;
 	
 	private String cpf;
@@ -19,6 +24,8 @@ public class FuncionarioDTO implements Serializable {
 
 	private Double salario;
 	
+	@NotEmpty(message="Nome do Cargo é obrigatório.")
+	@Length(min=5, max=40, message="O nome deve conter entre 5 e 40 caracteres.")
 	private String cargo;
 
 	private boolean ativo;

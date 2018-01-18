@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.leocaliban.funcionario.domain.Funcionario;
+import com.leocaliban.funcionario.dto.FuncionarioDTO;
 import com.leocaliban.funcionario.repositories.FuncionarioRepository;
 import com.leocaliban.funcionario.services.exceptions.ObjetoNaoEncontradoException;
 
@@ -36,18 +37,28 @@ public class FuncionarioService {
 	}
 	
 	public Funcionario editar(Funcionario funcionario) {
-		 	buscar(funcionario.getId());
-		 	return repository.save(funcionario);
+		buscar(funcionario.getId());
+		return repository.save(funcionario);
 	}
 	
 	public void excluir(Long id) {
-		 	buscar(id);
-		 	repository.delete(id);
+		buscar(id);
+		repository.delete(id);
 	}
 	
 	public Page<Funcionario> buscarPagina(Integer pagina, Integer linhasPorPagina, String ordenarPor, String direcao){
-		 	PageRequest pageRequest = new PageRequest(pagina, linhasPorPagina, Direction.valueOf(direcao), ordenarPor);
-		 	return repository.findAll(pageRequest);
+		PageRequest pageRequest = new PageRequest(pagina, linhasPorPagina, Direction.valueOf(direcao), ordenarPor);
+		return repository.findAll(pageRequest);
 	}
 	
+	/**
+	 * Converte para DTO
+	 * @param objDTO
+	 * @return Funcionario
+	 */
+	public Funcionario fromDTO(FuncionarioDTO objDTO) {
+		return new Funcionario(objDTO.getId(), objDTO.getNome(),objDTO.getCpf(),
+								objDTO.getDataNascimento(),objDTO.getSalario(),
+								objDTO.getCargo(),objDTO.isAtivo());
+	}
 }

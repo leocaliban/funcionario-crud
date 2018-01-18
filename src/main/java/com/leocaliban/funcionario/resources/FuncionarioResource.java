@@ -4,6 +4,8 @@ package com.leocaliban.funcionario.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +41,8 @@ public class FuncionarioResource {
 	 }
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> salvar(@RequestBody Funcionario funcionario){
+	public ResponseEntity<Void> salvar(@Valid @RequestBody FuncionarioDTO funcionarioDTO){
+		Funcionario funcionario = service.fromDTO(funcionarioDTO);
 		funcionario = service.salvar(funcionario);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(funcionario.getId()).toUri();
@@ -47,7 +50,8 @@ public class FuncionarioResource {
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
-	 public ResponseEntity<Void> editar(@RequestBody Funcionario funcionario, @PathVariable Long id){
+	 public ResponseEntity<Void> editar(@Valid @RequestBody FuncionarioDTO funcionarioDTO, @PathVariable Long id){
+		Funcionario funcionario = service.fromDTO(funcionarioDTO);
 		funcionario.setId(id);
 		funcionario = service.editar(funcionario);
 	 	return ResponseEntity.noContent().build();
