@@ -12,9 +12,14 @@ public class FuncionarioService {
 	@Autowired
 	private FuncionarioRepository repository;
 	
-	public Funcionario find(Long id) {
+	public Funcionario buscar(Long id) {
 		Funcionario funcionario = repository.findOne(id);
 		return funcionario;
+	}
+	
+	public Funcionario salvar(Funcionario funcionario) {
+		funcionario.setId(null);
+		return repository.save(funcionario);
 	}
 	
 }
