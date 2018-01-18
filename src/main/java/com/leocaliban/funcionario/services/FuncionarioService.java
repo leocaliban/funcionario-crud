@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.leocaliban.funcionario.domain.Funcionario;
 import com.leocaliban.funcionario.repositories.FuncionarioRepository;
+import com.leocaliban.funcionario.services.exceptions.ObjetoNaoEncontradoException;
 
 @Service
 public class FuncionarioService {
@@ -14,6 +15,10 @@ public class FuncionarioService {
 	
 	public Funcionario buscar(Long id) {
 		Funcionario funcionario = repository.findOne(id);
+		if(funcionario == null) {
+			throw new ObjetoNaoEncontradoException("Funcionario Não Encontrado! Id: "+id+
+													" , Tipo: "+Funcionario.class.getName());
+		}
 		return funcionario;
 	}
 	
